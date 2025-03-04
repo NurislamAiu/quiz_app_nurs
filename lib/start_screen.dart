@@ -22,11 +22,14 @@ class StartScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 30),
-        OutlinedButton(onPressed: (){},
+        OutlinedButton.icon(
+          onPressed: () {},
           style: OutlinedButton.styleFrom(
             foregroundColor: Colors.white,
           ),
-          child: Text('Start Quiz'), )
+          icon: Icon(Icons.arrow_forward_ios_outlined),
+          label: Text('Start Quiz'),
+        )
       ],
     ));
   }
