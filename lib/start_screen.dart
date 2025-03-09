@@ -9,31 +9,74 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(context) {
     return Center(
-        child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset(
-          'assets/images/quiz-logo.png',
-          width: 300,
-        ),
-        SizedBox(height: 80),
-        Text(
-          'Learn Flutter the fun way',
-          style: GoogleFonts.lato(
-            color: Colors.white,
-            fontSize: 24,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.3),
+                      blurRadius: 25,
+                      offset: const Offset(0, 12),
+                    ),
+                  ],
+                ),
+                child: ClipOval(
+                  child: Image.asset(
+                    'assets/images/quiz-logo.png',
+                    width: 200,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 50),
+              Text(
+                'Master Flutter with Fun!',
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      color: Colors.black.withOpacity(0.3),
+                      offset: const Offset(2, 4),
+                      blurRadius: 6,
+                    ),
+                  ],
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 40),
+              ElevatedButton.icon(
+                onPressed: startQuiz,
+                icon: const Icon(
+                  Icons.play_arrow,
+                  size: 30,
+                  color: Colors.black,
+                ),
+                label: Text(
+                  'Start Quiz',
+                  style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                  backgroundColor: Colors.amber.shade500,
+                  foregroundColor: Colors.black,
+                  elevation: 12,
+                  shadowColor: Colors.amber.shade300,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        SizedBox(height: 30),
-        OutlinedButton.icon(
-          onPressed: startQuiz,
-          style: OutlinedButton.styleFrom(
-            foregroundColor: Colors.white,
-          ),
-          icon: Icon(Icons.arrow_forward_ios_outlined, color: Colors.white),
-          label: Text('Start Quiz'),
-        )
-      ],
-    ));
+    );
   }
 }
