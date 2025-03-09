@@ -7,26 +7,68 @@ class QuestionsSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: summaryData.map(
-        (data) {
-          return Row(
-            children: [
-              Text(((data['question_index'] as int) + 1).toString()),
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(data['question'] as String),
-                    SizedBox(height: 5),
-                    Text(data['user_answer'] as String),
-                    Text(data['correct_answer'] as String),
-                  ],
+    return SizedBox(
+      height: 500,
+      child: SingleChildScrollView(
+        child: Column(
+          children: summaryData.map(
+                (data) {
+              final bool isCorrectAnswer = data['user_answer'] == data['correct_answer'];
+
+              return Card(
+                elevation: 6,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
                 ),
-              )
-            ],
-          );
-        },
-      ).toList(),
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CircleAvatar(
+                        radius: 16,
+                        backgroundColor:
+                        isCorrectAnswer ? Colors.greenAccent.shade400 : Colors.redAccent.shade400,
+                        child: Text(
+                          ((data['question_index'] as int) + 1).toString(),
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              data['question'] as String,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black87),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              'Your answer: ${data['user_answer']}',
+                              style: TextStyle(
+                                  color: isCorrectAnswer
+                                      ? Colors.green
+                                      : Colors.red,
+                                  fontSize: 14),
+                            ),
+                            Text(
+                              'Correct answer: ${data['correct_answer']}',
+                              style: TextStyle(color: Colors.black, fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          ).toList(),
+        ),
+      ),
     );
   }
 }
