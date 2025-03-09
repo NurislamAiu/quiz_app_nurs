@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:quiz_app_nurs/data/questions.dart';
 import 'package:quiz_app_nurs/questions_summary.dart';
 
@@ -45,7 +46,7 @@ class ResultsScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Icon(Icons.emoji_events, size: 80, color: Colors.amber.shade400),
+              Icon(Iconsax.cup, size: 80, color: Colors.amber.shade400),
               const SizedBox(height: 15),
               Text(
                 'Congratulations!',
@@ -84,7 +85,7 @@ class ResultsScreen extends StatelessWidget {
               const SizedBox(height: 40),
               ElevatedButton.icon(
                 onPressed: onRestart,
-                icon: const Icon(Icons.refresh, size: 24, color: Colors.black),
+                icon: const Icon(Iconsax.refresh, size: 24, color: Colors.black),
                 label: Text(
                   'Restart Quiz',
                   style: GoogleFonts.poppins(
